@@ -6,5 +6,5 @@ Trying to see how many stars can i get on [Advent of Code 2025](https://adventof
 
 | Day | Done | Link | Notes |
 | --- | ---- | ---- | ----- |
-| 1   | [X]  | [goto](https://adventofcode.com/2025/day/1) | 
+| 1   | [X]  | [goto](https://adventofcode.com/2025/day/1) | Pretty simple? why? am i doing wrong?
 
