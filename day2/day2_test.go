@@ -18,10 +18,47 @@ func TestPartA(t *testing.T) {
 }
 
 func TestPartB(t *testing.T) {
-	expected := 0
+	expected := 4174379265
 	result := PartB(data)
 
 	if expected != result {
 		t.Fatalf("\nExpected = %d\nResult = %d\n", expected, result)
+	}
+}
+
+func TestPartBValidater(t *testing.T) {
+	shouldFailTestCases := []int{
+		11,
+		22,
+		99,
+		111,
+		999,
+		1010,
+		1188511885,
+		222222,
+		446446,
+		38593859,
+		565656,
+		824824824,
+		2121212121,
+	}
+	shouldPassTestCases := []int{
+		2121212118,
+		2121212119,
+		2121212120,
+		2121212122,
+		2121212123,
+		2121212124,
+	}
+
+	for _, input := range shouldFailTestCases {
+		if isValid2(input) {
+			t.Fatal("should return false", input)
+		}
+	}
+	for _, input := range shouldPassTestCases {
+		if !isValid2(input) {
+			t.Fatal("should return true", input)
+		}
 	}
 }
