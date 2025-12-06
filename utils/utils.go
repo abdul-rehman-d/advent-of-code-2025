@@ -15,3 +15,15 @@ func FilterEmptyLines(data []string) []string {
 	}
 	return out
 }
+
+func ReplaceStringAtIndex(s string, idx int, ch byte) string {
+	out := ""
+	for i := 0; i < len(s); i++ {
+		if i == idx {
+			out += string(ch)
+		} else {
+			out += string(s[i])
+		}
+	}
+	return out
+}
