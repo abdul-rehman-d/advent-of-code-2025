@@ -2,48 +2,38 @@ package day5
 
 import (
 	"cmp"
-	"fmt"
 	"slices"
 	"strconv"
 	"strings"
 )
 
 func merge(ranges []Range) []Range {
-	newRanges := []*Range{}
-	for i := 0; i < len(ranges)-1; i++ {
-		curr := ranges[i]
-		next := ranges[i+1]
+	newRanges := []Range{}
 
-		fmt.Println(curr, next, i)
+	curr := ranges[0]
+
+	for i := 1; i < len(ranges); i++ {
+		r := ranges[i]
 
 		// overlapping
-		if (next.S >= curr.S && next.S <= curr.E) ||
-			(next.E >= curr.S && next.E <= curr.E) {
+		if (r.S >= curr.S && r.S <= curr.E) ||
+			(r.E >= curr.S && r.E <= curr.E) {
 			n := Range{
-				S: min(curr.S, next.S),
-				E: max(curr.E, next.E),
+				S: min(curr.S, r.S),
+				E: max(curr.E, r.E),
 			}
 
-			newRanges = append(newRanges, nil)
-			ranges[i+1] = n
-		} else {
-			newRanges = append(newRanges, &curr)
-		}
-
-		fmt.Println(i, len(ranges)-1)
-	}
-
-	newRanges = append(newRanges, &ranges[len(ranges)-1])
-
-	out := []Range{}
-	for _, r := range newRanges {
-		if r == nil {
+			curr = n
 			continue
 		}
-		out = append(out, *r)
+
+		newRanges = append(newRanges, curr)
+		curr = r
 	}
 
-	return out
+	newRanges = append(newRanges, curr)
+
+	return newRanges
 }
 
 func PartB(data string) int {
@@ -72,16 +62,7 @@ func PartB(data string) int {
 		return cmp.Compare(a.S, b.S)
 	})
 
-	for _, r := range ranges {
-		fmt.Println(r)
-	}
-
 	merged := merge(ranges)
-
-	fmt.Println("")
-	for _, r := range merged {
-		fmt.Println(r)
-	}
 
 	count := 0
 	for _, r := range merged {
