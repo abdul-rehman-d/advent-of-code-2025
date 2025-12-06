@@ -28,7 +28,7 @@ func TestPartA(t *testing.T) {
 }
 
 func TestPartB(t *testing.T) {
-	expected := 0
+	expected := 14
 	result := PartB(data)
 
 	if expected != result {
