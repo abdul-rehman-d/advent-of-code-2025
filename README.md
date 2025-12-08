@@ -12,4 +12,5 @@ Trying to see how many stars can i get on [Advent of Code 2025](https://adventof
 | 4   | [X]  | [goto](https://adventofcode.com/2025/day/4) | Part B doesnt look very optimized? But was pretty easy
 | 5   | [X]  | [goto](https://adventofcode.com/2025/day/5) | Part B got me stuck for looooooong. Had to ask llm for better cases and then settled on sort and merge approach
 | 6   | [X]  | [goto](https://adventofcode.com/2025/day/6) | Made me really think but was pretty fun to figure out. Seemed easier than Day 5
+| 7   | [X]  | [goto](https://adventofcode.com/2025/day/7) | SUPER FUN! I think I finally understand Dynamic Programming to solve the part B first try? Love how ambigious the question phrasing was and hence how rewarding it was to solve it. Took my time, ngl but with a bit whiteboarding, got it perfectly
 
