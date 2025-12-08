@@ -7,6 +7,7 @@ import (
 	"advent-of-code-2025/day4"
 	"advent-of-code-2025/day5"
 	"advent-of-code-2025/day6"
+	"advent-of-code-2025/day7"
 	"fmt"
 	"io"
 	"log"
@@ -76,6 +77,7 @@ func solve(day int) {
 		day4.PartA,
 		day5.PartA,
 		day6.PartA,
+		day7.PartA,
 	}
 	partB := []func(string) int{
 		day1.PartB,
@@ -84,6 +86,7 @@ func solve(day int) {
 		day4.PartB,
 		day5.PartB,
 		day6.PartB,
+		day7.PartB,
 	}
 
 	if day > len(partA) {
