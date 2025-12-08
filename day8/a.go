@@ -83,7 +83,7 @@ func getShortest(distMap [][]Meh) (int, int) {
 
 type Circuit struct {
 	Id  int
-	Len byte
+	Len int
 }
 
 const MAX = 10
