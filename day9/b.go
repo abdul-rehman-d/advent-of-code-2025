@@ -7,6 +7,29 @@ import (
 	"strings"
 )
 
+func edgeIntersectsRect(
+	x1, y1, x2, y2 int, // edge endpoints
+	rx1, ry1, rx2, ry2 int, // rectangle (already sorted: rx1 <= rx2, ry1 <= ry2)
+) bool {
+	// horizontal edge
+	if y1 == y2 {
+		if ry1 < y1 && y1 < ry2 { // edge is vertically inside rect
+			if max(x1, x2) > rx1 && min(x1, x2) < rx2 {
+				// edge's x-range overlaps rect interior
+				return true
+			}
+		}
+	} else { // vertical edge (AoC edges are axis-aligned)
+		if rx1 < x1 && x1 < rx2 { // edge is horizontally inside rect
+			if max(y1, y2) > ry1 && min(y1, y2) < ry2 {
+				// edge's y-range overlaps rect interior
+				return true
+			}
+		}
+	}
+	return false
+}
+
 func pointOnSegment(p, a, b Coord) bool {
 	// Treat C as x, R as y
 	ax, ay := a.C, a.R
@@ -31,7 +54,9 @@ func pointOnSegment(p, a, b Coord) bool {
 }
 
 func CheckInside(coords []Coord, p Coord) bool {
-	count := 0
+	inside := false
+	px := float64(p.C)
+	py := float64(p.R)
 
 	for i, a := range coords {
 		b := coords[(i+1)%len(coords)] // back to zero
@@ -42,17 +67,20 @@ func CheckInside(coords []Coord, p Coord) bool {
 		}
 
 		// raycast
-		ay, ax := float64(a.R), float64(a.C)
-		by, bx := float64(b.R), float64(b.C)
-		py, px := float64(p.R), float64(p.C)
+		xi := float64(a.C)
+		yi := float64(a.R)
+		xj := float64(b.C)
+		yj := float64(b.R)
 
-		if ((py < ay) != (py < by)) &&
-			(px < ax+(py-ay)*(bx-ax)/(by-ay)) {
-			count++
+		intersects := ((yi > py) != (yj > py)) &&
+			(px < (xj-xi)*(py-yi)/(yj-yi)+xi)
+
+		if intersects {
+			inside = !inside
 		}
 	}
 
-	return count%2 == 1 // odd=inside
+	return inside
 }
 
 func PartB(data string) int {
@@ -106,30 +134,45 @@ func PartB(data string) int {
 			if i == j {
 				continue
 			}
+			a := area(ci, cj)
+			if a < largest {
+				// no point if its not even largest yet
+				continue
+			}
+
 			valid := true
 
 			// check four corners
 			// 9,5 & 2,3
 			// 9,5 - 9,3 - 2,3 - 2,5
-			toCheck := []Coord{
+			corners := []Coord{
 				{R: ci.R, C: ci.C},
 				{R: cj.R, C: cj.C},
 				{R: cj.R, C: ci.C},
 				{R: ci.R, C: cj.C},
 			}
 
-			for _, p := range toCheck {
-				aa := checkInsidePolygon(p)
-				if !aa {
+			for _, p := range corners {
+				if !checkInsidePolygon(p) {
 					valid = false
+					break
+				}
+			}
+
+			for i, a := range coords {
+				b := coords[(i+1)%len(coords)] // wrap around
+
+				ex1, ey1 := a.C, a.R
+				ex2, ey2 := b.C, b.R
+
+				if edgeIntersectsRect(ex1, ey1, ex2, ey2, ci.C, cj.C, ci.R, cj.R) {
+					valid = false
+					break
 				}
 			}
 
 			if valid {
-				a := area(ci, cj)
-				if largest < a {
-					largest = a
-				}
+				largest = a
 			}
 		}
 	}
