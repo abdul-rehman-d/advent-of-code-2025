@@ -3,7 +3,6 @@ package day9
 import (
 	"advent-of-code-2025/utils"
 	"fmt"
-	"math"
 	"strconv"
 	"strings"
 )
@@ -11,8 +10,8 @@ import (
 type Coord = utils.Coord
 
 func area(a, b Coord) int {
-	l := math.Abs(float64(a.R)-float64(b.R)) + 1
-	w := math.Abs(float64(a.C)-float64(b.C)) + 1
+	l := max(a.R, b.R) - min(a.R, b.R) + 1
+	w := max(a.C, b.C) - min(a.C, b.C) + 1
 
 	return int(l * w)
 }
