@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	data = `aaa: you hhh
+	dataA = `aaa: you hhh
 you: bbb ccc
 bbb: ddd eee
 ccc: ddd eee fff
@@ -16,11 +16,24 @@ ggg: out
 hhh: ccc fff iii
 iii: out
 `
+	dataB = `svr: aaa bbb
+aaa: fft
+fft: ccc
+bbb: tty
+tty: ccc
+ccc: ddd eee
+ddd: hub
+hub: fff
+eee: dac
+dac: fff
+fff: ggg hhh
+ggg: out
+hhh: out`
 )
 
 func TestPartA(t *testing.T) {
 	expected := 5
-	result := PartA(data)
+	result := PartA(dataA)
 
 	if expected != result {
 		t.Fatalf("\nExpected = %d\nResult = %d\n", expected, result)
@@ -28,8 +41,8 @@ func TestPartA(t *testing.T) {
 }
 
 func TestPartB(t *testing.T) {
-	expected := 0
-	result := PartB(data)
+	expected := 2
+	result := PartB(dataB)
 
 	if expected != result {
 		t.Fatalf("\nExpected = %d\nResult = %d\n", expected, result)
