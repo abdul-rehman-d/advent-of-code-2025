@@ -27,3 +27,17 @@ func ReplaceStringAtIndex(s string, idx int, ch byte) string {
 	}
 	return out
 }
+
+func CompareBoolArr(a1, a2 []bool) bool {
+	if len(a1) != len(a2) {
+		return false
+	}
+
+	for i, a := range a1 {
+		if a != a2[i] {
+			return false
+		}
+	}
+
+	return true
+}
