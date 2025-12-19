@@ -17,4 +17,5 @@ Trying to see how many stars can i get on [Advent of Code 2025](https://adventof
 | 9   | [X]  | [goto](https://adventofcode.com/2025/day/9) | Was **extremely** difficult.. Part A was very fun.. Part B i had to find the algorithm. Turns out we have to use something called raycasting. and it also depends on the input being in sequence. despite this [YT video](https://www.youtube.com/watch?v=-w5mFTtRLE8), my solution couldnt crack it.. because even checking corners in polygon isnt enough apparently. it is too freaky. Will look at Day 10 before i try this again..
 | 10   | [X]  | [goto](https://adventofcode.com/2025/day/10) | Dunno how to do.... yet
 | 11   | [X]  | [goto](https://adventofcode.com/2025/day/11) | Was pretty fun. Easy dfs stuff and part B always with a twist but easy. Need to recall what bitmask is, though.. i used a string to check which is weird
+| 12   | [X]  | [goto](https://adventofcode.com/2025/day/12) | Parsing was something and then turns out solution was actually pretty annoying and test case isn't even doable by the solution.. This [YT video](https://www.youtube.com/watch?v=kjAAoG8jR5M) helped me out.
 
